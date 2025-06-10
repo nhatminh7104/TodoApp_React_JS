@@ -1,0 +1,97 @@
+.todo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.todo-image {
+    margin-top: 15px;
+}
+
+.todo-logo {
+    width: 180px;
+    height: 180px;
+    padding: 1.5em;
+    transition: filter 300ms;
+    will-change: filter;
+}
+
+/* Hiệu ứng hover cho logo */
+.todo-logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+/* Animation xoay logo */
+@keyframes todo-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Chỉ xoay nếu người dùng không bật reduce motion */
+@media (prefers-reduced-motion: no-preference) {
+    .todo-logo {
+        animation: todo-logo-spin infinite 20s linear;
+    }
+}
+
+.todo-title {
+    font-size: 36px;
+    margin-top: 20px;
+    color: aqua;
+}
+
+.todo-input {
+    margin-top: 20px;
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.todo-input>input {
+    height: 30px;
+    font-size: 1rem;
+    flex: 1;
+    padding: 5px;
+    border-radius: 22px;
+}
+
+.todo-input>button {
+    padding: 10px 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    background: linear-gradient(135deg, #2a83d6, #1e5fbf);
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.todo-input>button:hover {
+    background: linear-gradient(135deg, #1e5fbf, #174c9e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.todo-data {
+    width: 500px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.todo-data>div {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}

@@ -1,8 +1,8 @@
 import './style.css';
 
 const MyComponent = () => {
-    const bfName = "Minh1";
-    const gfName = "Tien1";
+    const bfName = "Minh";
+    const gfName = "Tien";
 
     const famMem = ["Minh", "Duong", "Hai", "Lan"];
 
@@ -22,7 +22,7 @@ const MyComponent = () => {
                         borderRadius: "10px",
                     }
                 }>
-                {JSON.stringify(famMem)}
+                {JSON.stringify(person)}
             </div>
         </>
     );
