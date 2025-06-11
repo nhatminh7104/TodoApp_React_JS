@@ -4,6 +4,14 @@ import TodoData from './components/todo/TodoData';
 import ReactLogo from './assets/react.svg';
 
 const App = () => {
+
+  const name = "Minh";
+  const age = 21;
+  const data = {
+    address: "Saigon",
+    country: "Vietnam"
+  }
+
   return (
     <div className="todo-container">
       <div className='todo-image'>
@@ -11,9 +19,8 @@ const App = () => {
       </div>
 
       <div className="todo-title"> To-do List </div>
-
       <TodoNew />
-      <TodoData />
+      <TodoData name={name} age={age} data={data} />
     </div>
   );
 }
