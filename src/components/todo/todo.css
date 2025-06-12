@@ -95,3 +95,8 @@
     border-radius: 8px;
     background-color: #f4f4f4;
 }
+
+.todo-task {
+    display: flex;
+    justify-content: space-between;
+}

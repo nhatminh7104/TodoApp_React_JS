@@ -10,13 +10,6 @@ const App = () => {
     { id: 2, name: "Quet nha" }
   ]);
 
-  const name = "Minh";
-  const age = 21;
-  const data = {
-    address: "Saigon",
-    country: "Vietnam"
-  }
-
   const addNewTask = (name) => {
     const newTask = {
       id: randomIntFromInterval(1, 1000000000),
@@ -37,7 +30,7 @@ const App = () => {
 
       <div className="todo-title"> To-do List </div>
       <TodoNew addNewTask={addNewTask} />
-      <TodoData name={name} age={age} data={data} tasks={tasks} />
+      <TodoData tasks={tasks} />
     </div>
   );
 }

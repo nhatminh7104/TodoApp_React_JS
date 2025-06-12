@@ -1,15 +1,17 @@
-const TodoData = (props) => {
-    const { name, age, data } = props;
 
-    console.log("Check Props: ", props);
+const TodoData = (props) => {
+    const { tasks } = props;
 
     return (
         <div className='todo-data'>
-            <div>{name}: Giặt đồ</div>
-            <div>{name}: Quét nhà</div>
-            <div>
-                {JSON.stringify(props.tasks)}
-            </div>
+            {tasks.map(task => {
+                return (
+                    <div key={task.id} className="todo-task">
+                        <div>{task.name}</div>
+                        <button>Delete</button>
+                    </div>
+                )
+            })}
         </div>
     );
 }
