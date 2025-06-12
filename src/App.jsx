@@ -5,10 +5,11 @@ import ReactLogo from './assets/react.svg';
 import { useState } from 'react';
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, name: "Rua chen" },
-    { id: 2, name: "Quet nha" }
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  const randomIntFromInterval = (min, max) => { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   const addNewTask = (name) => {
     const newTask = {
@@ -16,10 +17,6 @@ const App = () => {
       name: name
     }
     setTasks([...tasks, newTask]);
-  }
-
-  const randomIntFromInterval = (min, max) => { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   return (
