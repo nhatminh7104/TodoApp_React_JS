@@ -19,6 +19,11 @@ const App = () => {
     setTasks([...tasks, newTask]);
   }
 
+  const deleteTask = (id) => {
+    const newTasks = tasks.filter(task => task.id !== id);
+    setTasks(newTasks);
+  }
+
   return (
     <div className="todo-container">
       <div className='todo-image'>
@@ -27,7 +32,7 @@ const App = () => {
 
       <div className="todo-title"> To-do List </div>
       <TodoNew addNewTask={addNewTask} />
-      <TodoData tasks={tasks} />
+      <TodoData tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }

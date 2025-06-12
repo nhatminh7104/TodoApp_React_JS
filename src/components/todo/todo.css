@@ -81,6 +81,11 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
+.todo-input>button:active {
+    background: linear-gradient(135deg, #096bc6, #1457bb);
+    transform: translateY(0);
+}
+
 .todo-data {
     width: 500px;
     margin-top: 20px;
@@ -109,4 +114,26 @@
 .todo-task {
     display: flex;
     justify-content: space-between;
+}
+
+.todo-task>button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.todo-task>button:hover {
+    background-color: #e60000;
+    transform: translateY(-2px);
+}
+
+.todo-task>button:active {
+    background-color: #cc0000;
+    transform: translateY(0);
 }
