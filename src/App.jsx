@@ -3,6 +3,8 @@ import TodoNew from './components/todo/TodoInput';
 import TodoData from './components/todo/TodoData';
 import ReactLogo from './assets/react.svg';
 import { useState } from 'react';
+import Header from './components/layout/header';
+import Footer from './components/layout/footer';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -25,14 +27,20 @@ const App = () => {
   }
 
   return (
-    <div className="todo-container">
-      <div className='todo-image'>
-        <img className='todo-logo' src={ReactLogo} alt="logo" />
-      </div>
-      <div className="todo-title"> To-do List </div>
+    <div className="app-wrapper">
+      <Header />
 
-      <TodoNew addNewTask={addNewTask} />
-      <TodoData tasks={tasks} deleteTask={deleteTask} />
+      <div className="todo-container">
+        <div className='todo-image'>
+          <img className='todo-logo' src={ReactLogo} alt="logo" />
+        </div>
+        <div className="todo-title"> To-do List </div>
+
+        <TodoNew addNewTask={addNewTask} />
+        <TodoData tasks={tasks} deleteTask={deleteTask} />
+      </div>
+
+      <Footer />
     </div>
   );
 }
