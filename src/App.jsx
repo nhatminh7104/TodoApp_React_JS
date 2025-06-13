@@ -29,8 +29,8 @@ const App = () => {
       <div className='todo-image'>
         <img className='todo-logo' src={ReactLogo} alt="logo" />
       </div>
-
       <div className="todo-title"> To-do List </div>
+
       <TodoNew addNewTask={addNewTask} />
       <TodoData tasks={tasks} deleteTask={deleteTask} />
     </div>
