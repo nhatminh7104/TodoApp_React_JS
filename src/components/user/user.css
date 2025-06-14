@@ -1,0 +1,38 @@
+.user-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.form-grid {
+    width: 100%;
+    max-width: 480px;
+    /* form thu gọn lại */
+    padding: 24px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* khoảng cách giữa các input */
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-item label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-grid .ant-input,
+.form-grid .ant-btn {
+    width: 100%;
+}
