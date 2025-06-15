@@ -1,6 +1,6 @@
 const RegisterPage = () => {
     return (
-        <duv>Register Page</duv>
+        <div>Register Page</div>
     );
 }
 

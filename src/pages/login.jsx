@@ -1,6 +1,6 @@
 const LoginPage = () => {
     return (
-        <duv>Login Page</duv>
+        <div>Login Page</div>
     );
 }
 
