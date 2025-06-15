@@ -1,29 +1,49 @@
 import { Input } from "antd";
 import { Button } from 'antd'
 import './user.css';
+import { useState } from "react";
 
 const UserForm = () => {
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
+
+    const handleClickBtn = () => {
+
+    }
+
     return (
         <div className="user-form">
             <div className="form-grid">
                 <div className="form-item">
                     <label>Fullname</label>
-                    <Input />
+                    <Input
+                        value={fullName}
+                        onChange={(event) => setFullName(event.target.value)} />
                 </div>
                 <div className="form-item">
                     <label>Email</label>
-                    <Input />
+                    <Input
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)} />
                 </div>
                 <div className="form-item">
                     <label>Password</label>
-                    <Input.Password />
+                    <Input.Password
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)} />
                 </div>
                 <div className="form-item">
-                    <label>Phone Number</label>
-                    <Input />
+                    <label>Phone</label>
+                    <Input
+                        value={phone}
+                        onChange={(event) => setPhone(event.target.value)} />
                 </div>
                 <div>
-                    <Button type="primary">
+                    <Button
+                        type="primary"
+                        onClick={() => { handleClickBtn() }}>
                         Create User
                     </Button>
                 </div>
