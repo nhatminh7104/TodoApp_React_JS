@@ -2,13 +2,12 @@
     display: flex;
     justify-content: center;
     margin-top: 40px;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 .form-grid {
     width: 100%;
     max-width: 480px;
-    /* form thu gọn lại */
     padding: 24px;
     background-color: #fafafa;
     border: 1px solid #ddd;
@@ -17,22 +16,60 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    /* khoảng cách giữa các input */
+}
+
+.form-grid>h2 {
+    text-align: center;
 }
 
 .form-item {
     display: flex;
     flex-direction: column;
+    margin-top: 15px;
 }
 
 .form-item label {
-    font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     color: #333;
     font-size: 14px;
+    font-weight: 300;
 }
 
-.form-grid .ant-input,
-.form-grid .ant-btn {
+.user-table .edit-btn {
+    padding: 6px 12px;
+    background-color: #e6f4ff;
+    color: #1677ff;
+    border: 1px solid #91caff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.user-table .edit-btn:hover {
+    background-color: #bae0ff;
+    border-color: #69b1ff;
+}
+
+.user-table .delete-btn {
+    padding: 6px 12px;
+    background-color: #fff1f0;
+    color: #ff4d4f;
+    border: 1px solid #ffa39e;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.user-table .delete-btn:hover {
+    background-color: #ffccc7;
+    border-color: #ff7875;
+}
+
+.user-table-header {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
+    padding: 0 16px;
 }
