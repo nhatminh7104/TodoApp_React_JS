@@ -4,13 +4,23 @@ import { useState } from "react";
 import { Button } from 'antd'
 import { createUserAPI } from "../../services/api.service";
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const { loadUser } = props;
+
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
     const [isModalOpen, setIsModelOpen] = useState(false);
+
+    const closeUserForm = () => {
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+        setIsModelOpen(false);
+    }
 
     const handleOkBtn = async () => {
         const response = await createUserAPI(fullName, email, password, phone);
@@ -20,7 +30,8 @@ const UserForm = () => {
                 message: "Create user",
                 description: "Create user successfully!"
             })
-            setIsModelOpen(false);
+            closeUserForm();
+            await loadUser();
         }
 
         else
@@ -44,7 +55,7 @@ const UserForm = () => {
             <Modal title="Create new user"
                 open={isModalOpen}
                 onOk={handleOkBtn}
-                onCancel={() => setIsModelOpen(false)}
+                onCancel={() => closeUserForm()}
                 maskClosable={false}
                 okText="Create">
 
