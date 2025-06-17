@@ -1,7 +1,6 @@
-import { Input, notification, Modal } from "antd";
+import { Button, Input, notification, Modal } from "antd";
 import './user.css';
 import { useState } from "react";
-import { Button } from 'antd'
 import { createUserAPI } from "../../services/api.service";
 
 const UserForm = (props) => {
@@ -12,7 +11,7 @@ const UserForm = (props) => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
-    const [isModalOpen, setIsModelOpen] = useState(false);
+    const [isModalOpen, setIsModelOpen] = useState(true);
 
     const closeUserForm = () => {
         setFullName("");
@@ -83,7 +82,6 @@ const UserForm = (props) => {
                         value={phone}
                         onChange={(event) => setPhone(event.target.value)} />
                 </div>
-
             </Modal>
         </div>
     );

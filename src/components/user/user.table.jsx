@@ -1,4 +1,6 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Space, Table } from 'antd';
+import UpdateUserModal from './update.user.modal';
 
 const UserTable = (props) => {
     const { dataUsers } = props;
@@ -7,6 +9,11 @@ const UserTable = (props) => {
         {
             title: 'ID',
             dataIndex: '_id',
+            render: (_, record) => {
+                return (
+                    <a href='#'>{record._id}</a>
+                )
+            }
         },
         {
             title: 'Full Name',
@@ -19,16 +26,16 @@ const UserTable = (props) => {
         {
             title: 'Action',
             key: 'action',
-            width: 120,
+            width: 220,
             render: (_, record) => (
-                <Space size="middle">
+                <>
                     <button className='edit-btn'>
-                        <a>View {record.name}</a>
+                        <EditOutlined /> Edit
                     </button>
                     <button className='delete-btn'>
-                        <a>Delete</a>
+                        <DeleteOutlined /> Delete
                     </button>
-                </Space>
+                </>
             ),
         },
     ];
@@ -36,6 +43,7 @@ const UserTable = (props) => {
     return (
         <div className='user-table'>
             <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
+            <UpdateUserModal />
         </div>
     );
 }
