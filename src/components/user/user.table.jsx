@@ -1,8 +1,9 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Space, Table } from 'antd';
+import { Table, Popconfirm, notification } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
 import DetailUserDrawer from './detail.user.drawer';
+import { deleteUserAPI } from '../../services/api.service';
 
 const UserTable = (props) => {
     const { dataUsers, loadUser } = props;
@@ -12,6 +13,22 @@ const UserTable = (props) => {
 
     const [dataDetail, setDataDetail] = useState(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+    const handleConfirmBtn = async (id) => {
+        const response = await deleteUserAPI(id);
+
+        if (response.data) {
+            notification.success({
+                message: "Delete user",
+                description: "Delete user successfully!"
+            })
+            await loadUser();
+        } else
+            notification.error({
+                message: "Error delete user",
+                description: JSON.stringify(response.message)
+            })
+    };
 
     const columns = [
         {
@@ -49,9 +66,17 @@ const UserTable = (props) => {
                         }}>
                         <EditOutlined /> Edit
                     </button>
-                    <button className='delete-btn'>
+
+                    <Popconfirm
+                        className='delete-btn'
+                        title="Delete user"
+                        description="Are you sure to delete this user?"
+                        onConfirm={() => handleConfirmBtn(record._id)}
+                        okText="Yes"
+                        cancelText="No"
+                        placement='left'>
                         <DeleteOutlined /> Delete
-                    </button>
+                    </Popconfirm>
                 </>
             ),
         },
