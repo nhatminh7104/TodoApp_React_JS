@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, notification, Modal } from "antd";
 import { createUserAPI } from "../../services/api.service";
 
-const UpdateUserModal = () => {
+const UpdateUserModal = (props) => {
+    const [id, setId] = useState("");
     const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
-    const [isModalOpen, setIsModelOpen] = useState(false);
+    const {
+        isModalUpdateOpen, setIsModalUpdateOpen,
+        dataUpdate, setDataUpdate
+    } = props;
+
+    useEffect(() => {
+        if (dataUpdate) {
+            setId(dataUpdate._id);
+            setFullName(dataUpdate.fullName);
+            setPhone(dataUpdate.phone);
+        }
+    }, [dataUpdate]);
 
     const closeUserForm = () => {
+        setId("");
         setFullName("");
-        setEmail("");
-        setPassword("");
         setPhone("");
-        setIsModelOpen(false);
+        setDataUpdate(null);
+        setIsModalUpdateOpen(false);
     }
 
     const handleOkBtn = async () => {
@@ -37,13 +47,20 @@ const UpdateUserModal = () => {
             })
     }
 
+    console.log("Check dataUpdate props: ", dataUpdate);
+
     return (
         <Modal title="Update user"
-            open={isModalOpen}
+            open={isModalUpdateOpen}
             onOk={handleOkBtn}
             onCancel={() => closeUserForm()}
             maskClosable={false}
             okText="Save">
+
+            <div className="form-item">
+                <label>Id</label>
+                <Input value={id} disabled />
+            </div>
 
             <div className="form-item">
                 <label>Fullname</label>
@@ -51,18 +68,7 @@ const UpdateUserModal = () => {
                     value={fullName}
                     onChange={(event) => setFullName(event.target.value)} />
             </div>
-            <div className="form-item">
-                <label>Email</label>
-                <Input
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)} />
-            </div>
-            <div className="form-item">
-                <label>Password</label>
-                <Input.Password
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)} />
-            </div>
+
             <div className="form-item">
                 <label>Phone</label>
                 <Input

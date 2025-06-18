@@ -11,14 +11,14 @@ const UserForm = (props) => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
 
-    const [isModalOpen, setIsModelOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const closeUserForm = () => {
         setFullName("");
         setEmail("");
         setPassword("");
         setPhone("");
-        setIsModelOpen(false);
+        setIsModalOpen(false);
     }
 
     const handleOkBtn = async () => {
@@ -46,7 +46,7 @@ const UserForm = (props) => {
                 <h1>User Table</h1>
                 <Button size="large"
                     type="primary"
-                    onClick={() => setIsModelOpen(true)}>
+                    onClick={() => setIsModalOpen(true)}>
                     Create New User
                 </Button>
             </div>
