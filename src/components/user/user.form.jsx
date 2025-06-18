@@ -29,6 +29,7 @@ const UserForm = (props) => {
                 message: "Create user",
                 description: "Create user successfully!"
             })
+
             closeUserForm();
             await loadUser();
         }

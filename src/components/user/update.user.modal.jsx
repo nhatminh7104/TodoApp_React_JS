@@ -22,9 +22,9 @@ const UpdateUserModal = (props) => {
     }, [dataUpdate]);
 
     const closeUserForm = () => {
-        setId("");
-        setFullName("");
-        setPhone("");
+        // setId("");
+        // setFullName("");
+        // setPhone("");
         setDataUpdate(null);
         setIsModalUpdateOpen(false);
     }
@@ -47,8 +47,6 @@ const UpdateUserModal = (props) => {
                 description: response.message.join('\n')
             })
     }
-
-    console.log("Check dataUpdate props: ", dataUpdate);
 
     return (
         <Modal title="Update user"
@@ -79,4 +77,5 @@ const UpdateUserModal = (props) => {
         </Modal>
     );
 }
+
 export default UpdateUserModal;
