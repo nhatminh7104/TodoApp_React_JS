@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Drawer } from 'antd';
 
 const DetailUserDrawer = (props) => {
@@ -17,7 +16,7 @@ const DetailUserDrawer = (props) => {
             <Drawer
                 closable
                 destroyOnHidden
-                title={<p>User's Detail</p>}
+                title={<p>Users Detail</p>}
                 placement="right"
                 open={isDetailOpen}
                 onClose={closeUserForm}>
