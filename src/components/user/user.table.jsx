@@ -32,6 +32,14 @@ const UserTable = (props) => {
 
     const columns = [
         {
+            title: 'Serial Number',
+            render: (_, record, index) => {
+                return (
+                    index + 1
+                )
+            }
+        },
+        {
             title: 'ID',
             dataIndex: '_id',
             render: (_, record) => {
@@ -97,7 +105,8 @@ const UserTable = (props) => {
                 isDetailOpen={isDetailOpen}
                 setIsDetailOpen={setIsDetailOpen}
                 dataDetail={dataDetail}
-                setDataDetail={setDataDetail} />
+                setDataDetail={setDataDetail}
+                loadUser={loadUser} />
         </div>
     );
 }
