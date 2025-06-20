@@ -10,8 +10,8 @@ const DetailUserDrawer = (props) => {
     } = props;
 
     const closeUserForm = () => {
-        setDataDetail(null);
         setIsDetailOpen(false);
+        setDataDetail(null);
     }
 
     const [selectedFile, setSelectedFile] = useState(null);

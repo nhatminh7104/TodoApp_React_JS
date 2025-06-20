@@ -1,10 +1,29 @@
-import { Button, Input, Form } from "antd";
+import { Button, Input, Form, notification } from "antd";
+import { registerUserAPI } from "../services/api.service";
+import { useNavigate } from "react-router";
 
 const RegisterPage = () => {
     const [form] = Form.useForm();
+    const navigate = useNavigate();
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         console.log("values: ", values);
+
+        const response = await registerUserAPI(values.fullName, values.email, values.password, values.phone);
+
+        if (response.data) {
+            notification.success({
+                message: "Registration",
+                description: "Registration successful!"
+            })
+
+            navigate("/login");
+        }
+        else
+            notification.error({
+                message: "Registration error",
+                description: JSON.stringify(response.message)
+            })
     }
 
     return (
@@ -13,7 +32,7 @@ const RegisterPage = () => {
                 layout="vertical"
                 form={form}
                 onFinish={onFinish}
-            // onFinishFailed={onFinishFailed}"
+            // onFinishFailed={onFinishFailed}
             >
                 <div style={{
                     width: "500px",
@@ -24,6 +43,10 @@ const RegisterPage = () => {
                     <Form.Item
                         label="Full Name"
                         name="fullName"
+                        rules={[{
+                            required: true,
+                            message: "Full Name is required!"
+                        }]}
                     >
                         <Input />
                     </Form.Item>
@@ -31,6 +54,16 @@ const RegisterPage = () => {
                     <Form.Item
                         label="Email"
                         name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Email is required!"
+                            },
+                            {
+                                type: "email",
+                                message: "The input is not valid Email!",
+                            },
+                        ]}
                     >
                         <Input />
                     </Form.Item>
@@ -38,6 +71,16 @@ const RegisterPage = () => {
                     <Form.Item
                         label="Password"
                         name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Password is required!"
+                            },
+                            {
+                                min: 5,
+                                message: 'Username must be minimum 5 characters.'
+                            },
+                        ]}
                     >
                         <Input.Password />
                     </Form.Item>
@@ -45,6 +88,16 @@ const RegisterPage = () => {
                     <Form.Item
                         label="Phone"
                         name="phone"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Phone is required!"
+                            },
+                            {
+                                pattern: new RegExp(/\d+/g),
+                                message: "Phone must be number!",
+                            },
+                        ]}
                     >
                         <Input />
                     </Form.Item>
