@@ -1,12 +1,17 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Table, Popconfirm, notification } from 'antd';
 import UpdateUserModal from './update.user.modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DetailUserDrawer from './detail.user.drawer';
 import { deleteUserAPI } from '../../services/api.service';
 
 const UserTable = (props) => {
-    const { dataUsers, loadUser } = props;
+    const {
+        dataUsers, loadUser,
+        current, setCurrent,
+        pageSize, setPageSize,
+        total
+    } = props;
 
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
@@ -30,12 +35,18 @@ const UserTable = (props) => {
             })
     };
 
+    const onChange = async (pagination) => {
+        if (pagination && pagination.current)
+            if (+pagination.current !== +current)
+                setCurrent(+pagination.current);
+    };
+
     const columns = [
         {
             title: 'Serial Number',
             render: (_, record, index) => {
                 return (
-                    index + 1
+                    index + 1 + ((current - 1) * pageSize)
                 )
             }
         },
@@ -72,6 +83,7 @@ const UserTable = (props) => {
                             setDataUpdate(record);
                             setIsModalUpdateOpen(true);
                         }}>
+
                         <EditOutlined /> Edit
                     </button>
 
@@ -83,6 +95,7 @@ const UserTable = (props) => {
                         okText="Yes"
                         cancelText="No"
                         placement='left'>
+
                         <DeleteOutlined /> Delete
                     </Popconfirm>
                 </>
@@ -92,7 +105,19 @@ const UserTable = (props) => {
 
     return (
         <div className='user-table'>
-            <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
+            <Table
+                columns={columns} dataSource={dataUsers} rowKey={"_id"}
+                pagination={
+                    {
+                        current: current,
+                        pageSize: pageSize,
+                        showSizeChanger: false,
+                        total: total,
+                        // showTotal: (total, range) => <div> {range[0]}-{range[1]} on {total} rows</div>
+                    }
+                }
+                onChange={onChange}
+            />
 
             <UpdateUserModal
                 isModalUpdateOpen={isModalUpdateOpen}
