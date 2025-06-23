@@ -1,6 +1,7 @@
-import { Button, Input, Form, notification } from "antd";
+import { Button, Input, Form, notification, Row, Col, Divider } from "antd";
 import { registerUserAPI } from "../services/api.service";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
     const [form] = Form.useForm();
@@ -27,47 +28,42 @@ const RegisterPage = () => {
     }
 
     return (
-        <>
-            <Form
-                layout="vertical"
-                form={form}
-                onFinish={onFinish}
-            // onFinishFailed={onFinishFailed}
-            >
-                <div style={{
-                    width: "500px",
-                    display: "flex",
-                    margin: "50px auto",
-                    flexDirection: "column",
-                }}>
+        <Form
+            layout="vertical"
+            form={form}
+            onFinish={onFinish}
+            style={{ margin: 50 }}
+        >
+            <Row justify={"center"}>
+                <Col xs={24} md={8}>
                     <Form.Item
                         label="Full Name"
                         name="fullName"
                         rules={[{
                             required: true,
                             message: "Full Name is required!"
-                        }]}
-                    >
+                        }]}>
                         <Input />
                     </Form.Item>
+                </Col>
+            </Row>
 
+            <Row justify={"center"}>
+                <Col xs={24} md={8}>
                     <Form.Item
                         label="Email"
                         name="email"
                         rules={[
-                            {
-                                required: true,
-                                message: "Email is required!"
-                            },
-                            {
-                                type: "email",
-                                message: "The input is not valid Email!",
-                            },
-                        ]}
-                    >
+                            { required: true, message: "Email is required!" },
+                            { type: "email", message: "The input is not valid!", },
+                        ]}  >
                         <Input />
                     </Form.Item>
+                </Col>
+            </Row>
 
+            <Row justify={"center"}>
+                <Col xs={24} md={8}>
                     <Form.Item
                         label="Password"
                         name="password"
@@ -84,7 +80,11 @@ const RegisterPage = () => {
                     >
                         <Input.Password />
                     </Form.Item>
+                </Col>
+            </Row>
 
+            <Row justify={"center"}>
+                <Col xs={24} md={8}>
                     <Form.Item
                         label="Phone"
                         name="phone"
@@ -101,17 +101,28 @@ const RegisterPage = () => {
                     >
                         <Input />
                     </Form.Item>
+                </Col>
+            </Row>
 
+            <Row justify={"center"}>
+                <Col xs={24} md={8}>
                     <div>
                         <Button
+                            loading={true}
                             type="primary"
                             onClick={() => form.submit()}>
                             Register
                         </Button>
                     </div>
-                </div>
-            </Form>
-        </>
+
+                    <Divider />
+
+                    <div style={{ textAlign: 'center' }}>
+                        Already have an account? <Link to={"/login"}>Login</Link>
+                    </div>
+                </Col>
+            </Row>
+        </Form>
     );
 }
 

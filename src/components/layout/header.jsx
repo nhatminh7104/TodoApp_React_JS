@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
     AppstoreOutlined,
@@ -41,6 +41,21 @@ const Header = () => {
             label: <NavLink to="/books" >Books</NavLink>,
             key: 'books',
             icon: <BookOutlined />
+        },
+        {
+            label: 'Control',
+            key: 'setting',
+            icon: <SettingOutlined />,
+            children: [
+                {
+                    type: <Link to={"/login"}>Login</Link>,
+                    label: 'login',
+                },
+                {
+                    type: "Logout",
+                    label: 'logout',
+                },
+            ],
         }
     ];
 
