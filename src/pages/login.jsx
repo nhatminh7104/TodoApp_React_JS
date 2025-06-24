@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Col, Form, Input, Row, Divider, message, notification } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { loginUserAPI } from '../services/api.service';
+import { AuthContext } from '../components/context/auth.context';
 
 const LoginPage = () => {
     const [form] = Form.useForm();
     const [loading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { setUser } = useContext(AuthContext);
 
     const onFinish = async (values) => {
         setIsLoading(true);
-        const { email, password } = values;
+        const { username, password } = values;
 
-        const response = await loginUserAPI(email, password);
+        const response = await loginUserAPI(username, password);
 
         if (response.data) {
             message.success("Login succeed!");
+            localStorage.setItem("access_token", response.data.access_token);
+            setUser(response.data.user);
             navigate("/");
         }
         else {
@@ -31,7 +35,7 @@ const LoginPage = () => {
 
     return (
         <Row justify="center" style={{ marginTop: 100 }}>
-            <Col xs={22} sm={20} md={18} lg={16}>
+            <Col xs={22} sm={16} md={12} lg={8}>
                 <fieldset style={{
                     border: '1px solid #d9d9d9',
                     padding: '30px',

@@ -1,17 +1,17 @@
 import { NavLink, Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
-    AppstoreOutlined,
     BookOutlined,
     HomeOutlined,
-    MailOutlined,
     SettingOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 const Header = () => {
     const [current, setCurrent] = useState("");
+    const { user, setUser } = useContext(AuthContext);
 
     useEffect(() => {
         if (window.location.pathname === "/")
