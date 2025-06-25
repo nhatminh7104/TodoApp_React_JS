@@ -5,6 +5,8 @@ import {
     HomeOutlined,
     SettingOutlined,
     UserOutlined,
+    LoginOutlined,
+    AliwangwangOutlined
 } from '@ant-design/icons';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
@@ -42,21 +44,22 @@ const Header = () => {
             key: 'books',
             icon: <BookOutlined />
         },
-        {
-            label: 'Control',
+        ...(!user.id ? [{
+            label: <Link to={"/login"} >Login</Link>,
+            key: 'login',
+            icon: <LoginOutlined />
+        }] : []),
+        ...(user.id ? [{
+            label: `Welcome, ${user.fullName}`,
             key: 'setting',
-            icon: <SettingOutlined />,
+            icon: <AliwangwangOutlined />,
             children: [
                 {
-                    type: <Link to={"/login"}>Login</Link>,
-                    label: 'login',
-                },
-                {
-                    type: "Logout",
-                    label: 'logout',
+                    label: 'Log Out',
+                    key: 'logout'
                 },
             ],
-        }
+        }] : [])
     ];
 
     return (
