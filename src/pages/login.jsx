@@ -64,8 +64,6 @@ const LoginPage = () => {
                             <Input />
                         </Form.Item>
 
-
-
                         <Form.Item
                             label="Password"
                             name="password"
@@ -74,7 +72,9 @@ const LoginPage = () => {
                                 { min: 5, message: 'Username must be minimum 5 characters.' },
                             ]}
                         >
-                            <Input.Password />
+                            <Input.Password onKeyDown={(event) => {
+                                if (event.key === "Enter") form.submit();
+                            }} />
                         </Form.Item>
 
                         <Form.Item>
