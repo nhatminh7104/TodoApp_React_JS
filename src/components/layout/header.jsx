@@ -1,5 +1,5 @@
-import { NavLink, Link } from 'react-router-dom';
-import { Menu } from 'antd';
+import { NavLink, Link, Navigate, useNavigate } from 'react-router-dom';
+import { Menu, message } from 'antd';
 import {
     BookOutlined,
     HomeOutlined,
@@ -10,10 +10,12 @@ import {
 } from '@ant-design/icons';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
+import { logoutAPI } from '../../services/api.service';
 
 const Header = () => {
     const [current, setCurrent] = useState("");
     const { user, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (window.location.pathname === "/")
@@ -26,7 +28,28 @@ const Header = () => {
 
     const onClick = (e) => {
         setCurrent(e.key);
+
+        if (e.key === "logout")
+            handleLogOut();
     };
+
+    const handleLogOut = async () => {
+        console.log("Logout clicked!")
+        const response = await logoutAPI();
+        if (response.data) {
+            localStorage.removeItem("access_token");
+            setUser({
+                email: "",
+                phone: "",
+                fullName: "",
+                role: "",
+                avatar: "",
+                id: ""
+            });
+            message.success("Logout succeed");
+            navigate("/");
+        }
+    }
 
     const items = [
         {
@@ -44,11 +67,13 @@ const Header = () => {
             key: 'books',
             icon: <BookOutlined />
         },
+
         ...(!user.id ? [{
-            label: <Link to={"/login"} >Login</Link>,
+            label: <Link to={"/login"} >Log In</Link>,
             key: 'login',
             icon: <LoginOutlined />
         }] : []),
+
         ...(user.id ? [{
             label: `Welcome, ${user.fullName}`,
             key: 'setting',
