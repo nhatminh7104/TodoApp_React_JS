@@ -12,3 +12,17 @@
 .app-content {
     flex: 1;
 }
+
+.ant-spin-text {
+    display: block !important;
+    margin-top: 16px;
+    font-size: 16px;
+    color: #1677ff;
+}
+
+.spin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
