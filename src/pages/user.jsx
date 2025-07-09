@@ -33,7 +33,8 @@ const UserPage = () => {
                     setCurrent={setCurrent}
                     pageSize={pageSize}
                     setPageSize={setPageSize}
-                    total={total} />
+                    total={total}
+                />
             </div>
         </div>
     );

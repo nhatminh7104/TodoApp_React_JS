@@ -36,8 +36,6 @@ const DetailUserDrawer = (props) => {
     }
 
     const handleSaveUpdateAvatar = async () => {
-        console.log("Save hit");
-
         const responseUpload = await uploadFileAPI(selectedFile, "avatar");
 
         if (responseUpload.data) {

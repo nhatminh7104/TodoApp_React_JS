@@ -1,4 +1,4 @@
-.user-form {
+.book-form {
     display: flex;
     justify-content: center;
     margin-top: 40px;
@@ -35,11 +35,11 @@
     font-weight: 300;
 }
 
-.user-table button {
+.book-table button {
     margin-right: 15px;
 }
 
-.user-table .edit-btn {
+.book-table .edit-btn {
     padding: 6px 12px;
     background-color: #e6f4ff;
     color: #1677ff;
@@ -50,12 +50,12 @@
     transition: all 0.2s ease-in-out;
 }
 
-.user-table .edit-btn:hover {
+.book-table .edit-btn:hover {
     background-color: #bae0ff;
     border-color: #69b1ff;
 }
 
-.user-table .delete-btn {
+.book-table .delete-btn {
     padding: 6px 12px;
     background-color: #fff1f0;
     color: #ff4d4f;
@@ -66,12 +66,12 @@
     transition: all 0.2s ease-in-out;
 }
 
-.user-table .delete-btn:hover {
+.book-table .delete-btn:hover {
     background-color: #ffccc7;
     border-color: #ff7875;
 }
 
-.user-table-header {
+.book-table-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -99,7 +99,7 @@ label[for="btnUpload"]:hover {
     background-color: #40a9ff;
 }
 
-.user-table .ant-pagination {
+.book-table .ant-pagination {
     display: flex;
     justify-content: center;
 }

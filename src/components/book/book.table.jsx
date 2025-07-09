@@ -1,13 +1,13 @@
+import React, { useState } from 'react';
+import { notification, Popconfirm, Table } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Table, Popconfirm, notification } from 'antd';
-import UpdateUserModal from './update.user.modal';
-import { useEffect, useState } from 'react';
-import DetailUserDrawer from './detail.user.drawer';
-import { deleteUserAPI } from '../../services/api.service';
+import DetailBookDrawer from './detail.book.drawer';
+import UpdateBookModal from './update.book.modal';
+import { deleteBookAPI } from '../../services/api.service';
 
-const UserTable = (props) => {
+const BookTable = (props) => {
     const {
-        dataUsers, loadUser,
+        dataBooks, loadBook,
         current, setCurrent,
         pageSize, setPageSize,
         total
@@ -19,27 +19,29 @@ const UserTable = (props) => {
     const [dataDetail, setDataDetail] = useState(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
 
-    const handleConfirmBtn = async (id) => {
-        const response = await deleteUserAPI(id);
-
-        if (response.data) {
-            notification.success({
-                message: "Delete user",
-                description: "Delete user successfully!"
-            })
-            await loadUser();
-        } else
-            notification.error({
-                message: "Error delete user",
-                description: JSON.stringify(response.message)
-            })
-    };
-
     const onChange = async (pagination) => {
         if (pagination && pagination.current)
             if (+pagination.current !== +current)
                 setCurrent(+pagination.current);
     };
+
+    const handleDeleteBtn = async (id) => {
+        const response = await deleteBookAPI(id);
+
+        if (response.data) {
+            await loadBook();
+
+            notification.success({
+                message: "Delete User",
+                description: "Delete User Successfully!"
+            })
+        } else {
+            notification.error({
+                message: "Delete User",
+                description: JSON.stringify(response.message)
+            })
+        }
+    }
 
     const columns = [
         {
@@ -48,7 +50,7 @@ const UserTable = (props) => {
                 return (
                     index + 1 + ((current - 1) * pageSize)
                 )
-            }
+            },
         },
         {
             title: 'ID',
@@ -65,12 +67,37 @@ const UserTable = (props) => {
             }
         },
         {
-            title: 'Full Name',
-            dataIndex: 'fullName',
+            title: 'Title',
+            dataIndex: 'mainText',
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
+            title: 'Price',
+            dataIndex: 'price',
+            render: (_, record) => {
+                const formattedPrice = new Intl.NumberFormat('vi-VN', {
+                    style: "currency",
+                    currency: "VND",
+                }).format(record.price);
+
+                return (
+                    <p>{formattedPrice}</p>
+                )
+            }
+        },
+        {
+            title: 'Quantity',
+            dataIndex: 'quantity',
+            render: (_, record) => {
+                const formattedQuantity = new Intl.NumberFormat('us-EN').format(record.quantity);
+
+                return (
+                    <p>{formattedQuantity}</p>
+                )
+            }
+        },
+        {
+            title: 'Author',
+            dataIndex: 'author',
         },
         {
             title: 'Action',
@@ -91,7 +118,7 @@ const UserTable = (props) => {
                         className='delete-btn'
                         title="Delete user"
                         description="Are you sure to delete this user?"
-                        onConfirm={() => handleConfirmBtn(record._id)}
+                        onConfirm={() => handleDeleteBtn(record._id)}
                         okText="Yes"
                         cancelText="No"
                         placement='left'>
@@ -104,9 +131,9 @@ const UserTable = (props) => {
     ];
 
     return (
-        <div className='user-table'>
+        <div className='book-table'>
             <Table
-                columns={columns} dataSource={dataUsers} rowKey={"_id"}
+                columns={columns} dataSource={dataBooks} rowKey={"_id"}
                 pagination={
                     {
                         current: current,
@@ -118,23 +145,22 @@ const UserTable = (props) => {
                 onChange={onChange}
             />
 
-            <UpdateUserModal
+            <DetailBookDrawer
+                loadBook={loadBook}
+                isDetailOpen={isDetailOpen}
+                setIsDetailOpen={setIsDetailOpen}
+                dataDetail={dataDetail}
+                setDataDetail={setDataDetail} />
+
+            <UpdateBookModal
+                loadBook={loadBook}
                 isModalUpdateOpen={isModalUpdateOpen}
                 setIsModalUpdateOpen={setIsModalUpdateOpen}
                 dataUpdate={dataUpdate}
                 setDataUpdate={setDataUpdate}
-                loadUser={loadUser} />
-
-            <DetailUserDrawer
-                isDetailOpen={isDetailOpen}
-                setIsDetailOpen={setIsDetailOpen}
-                dataDetail={dataDetail}
-                setDataDetail={setDataDetail}
-                loadUser={loadUser} />
+            />
         </div>
-    );
+    )
 }
 
-
-
-export default UserTable;
+export default BookTable;
