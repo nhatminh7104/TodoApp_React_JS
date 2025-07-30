@@ -18,7 +18,6 @@ export const AuthWrapper = (props) => {
         avatar: "",
         id: ""
     })
-
     const [isAppLoading, setIsAppLoading] = useState(false);
 
     return (

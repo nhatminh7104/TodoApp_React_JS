@@ -1,5 +1,5 @@
 import './todo.css';
-import TodoNew from './TodoInput';
+import TodoInput from './TodoInput';
 import TodoData from './TodoData';
 import ReactLogo from '../../assets/react.svg';
 import { useState } from 'react';
@@ -7,7 +7,7 @@ import { useState } from 'react';
 const TodoApp = () => {
     const [tasks, setTasks] = useState([]);
 
-    const randomIntFromInterval = (min, max) => { // min and max included 
+    const randomIntFromInterval = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
@@ -29,9 +29,10 @@ const TodoApp = () => {
             <div className='todo-image'>
                 <img className='todo-logo' src={ReactLogo} alt="logo" />
             </div>
+
             <div className="todo-title"> To-do List </div>
 
-            <TodoNew addNewTask={addNewTask} />
+            <TodoInput addNewTask={addNewTask} />
             <TodoData tasks={tasks} deleteTask={deleteTask} />
         </div>
     );

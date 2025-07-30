@@ -14,7 +14,7 @@ const BookForm = (props) => {
                 <h2>Book Table</h2>
                 <Button size="large"
                     type="primary"
-                    onClick={() => { setIsModalOpen(true) }}>
+                    onClick={() => setIsModalOpen(true)}>
                     Create New Book
                 </Button>
             </div>

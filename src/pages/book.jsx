@@ -6,20 +6,26 @@ import { fetchAllBooksAPI } from "../services/api.service";
 
 const BookPage = () => {
     const [dataBooks, setDataBooks] = useState([]);
+
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(7);
     const [total, setTotal] = useState(0);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => { loadBook(); }, [current]);
 
     const loadBook = async () => {
+        setIsLoading(true);
+
         const response = await fetchAllBooksAPI(current, pageSize);
+
         if (response.data) {
             setDataBooks(response.data.result);
-            setCurrent(response.data.meta.current);
-            setPageSize(response.data.meta.pageSize);
             setTotal(response.data.meta.total)
         }
+
+        setIsLoading(false);
     }
 
     return (
@@ -34,6 +40,8 @@ const BookPage = () => {
                     pageSize={pageSize}
                     setPageSize={setPageSize}
                     total={total}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
                 />
             </div>
         </div>

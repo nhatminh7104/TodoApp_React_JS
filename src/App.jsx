@@ -11,39 +11,36 @@ const App = () => {
   const { setUser, isAppLoading, setIsAppLoading } = useContext(AuthContext);
 
   const fetchUserInfo = async () => {
+    setIsAppLoading(true);
     const response = await getAccountAPI();
 
-    if (response.data) {
+    if (response.data)
       setUser(response.data.user);
-    }
 
     setIsAppLoading(false);
   }
 
-  useEffect(() => {
-    fetchUserInfo()
-  }, [])
+  useEffect(() => fetchUserInfo(), [])
 
   return (
     <div className="app-wrapper">
+      {
+        isAppLoading === true ?
+          <div className="spin-container">
+            <Spin size="large" tip="Loading">
+              <div style={{ width: 100, height: 100 }}></div>
+            </Spin>
+          </div> :
+          <>
+            <Header />
 
-      {isAppLoading === true ?
-        <div className="spin-container">
-          <Spin size="large" tip="Loading">
-            <div style={{ width: 100, height: 100 }}></div>
-          </Spin>
-        </div> :
-        <>
-          <Header />
+            <div className='app-content'>
+              <Outlet />
+            </div>
 
-          <div className='app-content'>
-            <Outlet />
-          </div>
-
-          <Footer />
-        </>
+            <Footer />
+          </>
       }
-
     </div>
   );
 }

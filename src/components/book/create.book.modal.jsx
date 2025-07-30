@@ -10,12 +10,6 @@ const CreateBookModal = (props) => {
         loadBook
     } = props;
 
-    // const [title, setTitle] = useState(null);
-    // const [author, setAuthor] = useState(null);
-    // const [price, setPrice] = useState(null);
-    // const [quantity, setQuantity] = useState(null);
-    // const [category, setCategory] = useState(null);
-
     const [preview, setPreview] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -23,13 +17,6 @@ const CreateBookModal = (props) => {
     const [loading, setIsLoading] = useState(false);
 
     const handleCancel = () => {
-        {// setTitle(null);
-            // setAuthor(null);
-            // setPrice(null);
-            // setQuantity(null);
-            // setCategory(null);
-        }
-
         form.resetFields();
         setPreview(null);
         setSelectedFile(null);
@@ -97,85 +84,6 @@ const CreateBookModal = (props) => {
     }
 
     return (
-        // <Modal title="Create New Book"
-        //     open={isModalOpen}
-        //     onOk={handleOkBtn}
-        //     onCancel={handleCancel}
-        //     maskClosable={false}
-        //     okText="Create"
-        // >
-        //     <div className="form-item">
-        //         <label>Title</label>
-        //         <Input
-        //             value={title}
-        //             onChange={(event) => setTitle(event.target.value)} />
-        //     </div>
-        //     <div className="form-item">
-        //         <label>Author</label>
-        //         <Input
-        //             value={author}
-        //             onChange={(event) => setAuthor(event.target.value)} />
-        //     </div>
-
-        //     <div className="form-item">
-        //         <label>Price</label>
-        //         <InputNumber
-        //             value={price} addonAfter="đ"
-        //             onChange={(value) => setPrice(value)} />
-        //     </div>
-
-        //     <div className="form-item">
-        //         <label>Quantity</label>
-        //         <InputNumber
-        //             value={quantity}
-        //             style={{ width: "100%" }}
-        //             onChange={(value) => setQuantity(value)} />
-        //     </div>
-
-        //     <div className="form-item">
-        //         <label>Category</label>
-
-        //         <Select
-        //             defaultValue=""
-        //             onChange={(value) => setCategory(value)}
-        //             options={[
-        //                 { value: 'Arts', label: 'Arts' },
-        //                 { value: 'Business', label: 'Business' },
-        //                 { value: 'Comics', label: 'Comics' },
-        //                 { value: 'Cooking', label: 'Cooking' },
-        //                 { value: 'Entertainment', label: 'Entertainment' },
-        //                 { value: 'History', label: 'History' },
-        //                 { value: 'Music', label: 'Music' },
-        //                 { value: 'Sports', label: 'Sports' },
-        //                 { value: 'Teen', label: 'Teen' },
-        //                 { value: 'Travel', label: 'Travel' },
-        //             ]}
-        //         />
-        //     </div>
-
-        //     <div className="form-item">
-        //         <label>Book Cover</label>
-        //         {preview && (
-        //             <div style={{ marginTop: 15 }}>
-        //                 <img
-        //                     src={preview}
-        //                     alt="book-cover"
-        //                     style={{ height: 100, width: 150, objectFit: "contain" }}
-        //                 />
-        //             </div>
-        //         )}
-        //         <div style={{ marginTop: 15 }}>
-        //             <label htmlFor="btnUpload" style={{ display: "inline-block" }}>
-        //                 {preview ? "Change" : "Upload"}
-        //             </label>
-        //             <input type="file" id="btnUpload" hidden
-        //                 onChange={handleOnChangeFile}
-        //                 onClick={(e) => e.target.value = null}
-        //             />
-        //         </div>
-        //     </div>
-        // </Modal>
-
         <Modal title="Create New Book"
             open={isModalOpen}
             onOk={() => form.submit()}

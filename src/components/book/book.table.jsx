@@ -10,6 +10,7 @@ const BookTable = (props) => {
         dataBooks, loadBook,
         current, setCurrent,
         pageSize, setPageSize,
+        isLoading, setIsLoading,
         total
     } = props;
 
@@ -143,6 +144,7 @@ const BookTable = (props) => {
                     }
                 }
                 onChange={onChange}
+                loading={isLoading}
             />
 
             <DetailBookDrawer

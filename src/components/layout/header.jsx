@@ -1,9 +1,8 @@
-import { NavLink, Link, Navigate, useNavigate } from 'react-router-dom';
+import { NavLink, Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, message } from 'antd';
 import {
     BookOutlined,
     HomeOutlined,
-    SettingOutlined,
     UserOutlined,
     LoginOutlined,
     AliwangwangOutlined
@@ -16,15 +15,13 @@ const Header = () => {
     const [current, setCurrent] = useState("");
     const { user, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
-        if (window.location.pathname === "/")
-            setCurrent("home");
-        else if (window.location.pathname === "/users")
-            setCurrent("users");
-        else
-            setCurrent("books");
-    }, []);
+        const currentPath = location.pathname.slice(1);
+        const currentRoute = currentPath === "" ? "home" : currentPath;
+        setCurrent(currentRoute);
+    }, [location.pathname]);
 
     const onClick = (e) => {
         setCurrent(e.key);

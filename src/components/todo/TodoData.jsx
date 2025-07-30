@@ -14,7 +14,8 @@ const TodoData = (props) => {
                         </div>
                     )
                 })
-            }  {tasks.length === 0 && <h3>Chưa có task nào!</h3>}
+            }
+            {tasks.length === 0 && <h3>Chưa có task nào!</h3>}
         </div>
     );
 }
