@@ -20,7 +20,7 @@ const App = () => {
     setIsAppLoading(false);
   }
 
-  useEffect(() => fetchUserInfo(), [])
+  useEffect(() => { fetchUserInfo() }, [])
 
   return (
     <div className="app-wrapper">

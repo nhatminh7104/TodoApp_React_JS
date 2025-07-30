@@ -73,7 +73,6 @@ const DetailUserDrawer = (props) => {
             <Drawer
                 width={'40vw'}
                 closable
-                destroyOnHidden
                 title={<p>Users Detail</p>}
                 placement="right"
                 open={isDetailOpen}

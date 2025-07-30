@@ -32,8 +32,7 @@ const DetailBookDrawer = (props) => {
             <Drawer
                 width={'40vw'}
                 closable
-                destroyOnHidden
-                title={<p>Users Detail</p>}
+                title={<p>Books Detail</p>}
                 placement="right"
                 onClose={closeBookForm}
                 open={isDetailOpen}
